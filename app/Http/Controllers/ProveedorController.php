@@ -21,7 +21,7 @@ class ProveedorController extends Controller
 
   public function store(Request $request){
     $dato = new Proveedor;
-    $request['user_id'] = \Auth::user()->id;
+    $request['id_user'] = \Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Proveedor');
@@ -34,7 +34,7 @@ class ProveedorController extends Controller
 
   public function update(Request $request, $id){
     $dato = Proveedor::find($id);
-    $request['user_id'] = \Auth::user()->id;
+    $request['id_user'] = \Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Proveedor');
