@@ -10,6 +10,10 @@ class ReporteController extends Controller
       return view('reporte.index');
     }
 
+    public function inicio(){
+      return view('inicio');
+    }
+
     public function reporte(Request $request){
       $inicio = $request->inicio;
       $fin    = $request->fin;

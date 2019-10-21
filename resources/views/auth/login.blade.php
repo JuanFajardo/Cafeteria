@@ -8,11 +8,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>G.A.M.P. - @yield('title')</title>
-  {!! app('html')->style('/assets/vendors/ti-icons/css/themify-icons.css') !!}
-  {!! app('html')->style('/assets/vendors/base/vendor.bundle.base.css') !!}
-  {!! app('html')->style('/assets/vendros/dataTables/dataTables.bootstrap.css') !!}
-  {!! app('html')->style('/assets/css/style.css') !!}
-  <link rel="shortcut icon" href="{{ asset('/assets/images/escudogmp.jpg') }}" />
+  {!! app('html')->style('/public/assets/vendors/ti-icons/css/themify-icons.css') !!}
+  {!! app('html')->style('/public/assets/vendors/base/vendor.bundle.base.css') !!}
+  {!! app('html')->style('/public/assets/vendros/dataTables/dataTables.bootstrap.css') !!}
+  {!! app('html')->style('/public/assets/css/style.css') !!}
+  <link rel="shortcut icon" href="{{ asset('/public/assets/images/escudogmp.jpg') }}" />
 </head>
 <body>
   <div class="container-scroller">
@@ -22,9 +22,9 @@
          <div class="col-lg-4 mx-auto">
            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
              <div class="brand-logo">
-               <img src="{{ asset('assets/images/logo.svg') }}" alt="logo">
+               <img src="{{ asset('/public/assets/images/logo.png') }}" alt="logo">
              </div>
-             <h4>Gobierno Autónomo Municipal de Potosí</h4>
+             <h4>Cafeteria Reposteria Baraca </h4>
              <h6 class="font-weight-light">Inicie session para continuar.</h6>
               <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                {{ csrf_field() }}
@@ -58,17 +58,17 @@
    <!-- page-body-wrapper ends -->
  </div>
 
-  {!! app('html')->script('/assets/vendors/base/vendor.bundle.base.js') !!}
-  {!! app('html')->script('/assets/vendors/chart.js/Chart.min.js') !!}
+  {!! app('html')->script('/public/assets/vendors/base/vendor.bundle.base.js') !!}
+  {!! app('html')->script('/public/assets/vendors/chart.js/Chart.min.js') !!}
 
-  {!! app('html')->script('/assets/vendors/dataTables/jquery.dataTables.js') !!}
-  {!! app('html')->script('/assets/vendors/dataTables/dataTables.bootstrap.js') !!}
+  {!! app('html')->script('/public/assets/vendors/dataTables/jquery.dataTables.js') !!}
+  {!! app('html')->script('/public/assets/vendors/dataTables/dataTables.bootstrap.js') !!}
 
-  {!! app('html')->script('/assets/js/off-canvas.js') !!}
-  {!! app('html')->script('/assets/js/hoverable-collapse.js') !!}
-  {!! app('html')->script('/assets/js/template.js') !!}
-  {!! app('html')->script('/assets/js/todolist.js') !!}
-  {!! app('html')->script('/assets/js/dashboard.js') !!}
+  {!! app('html')->script('/public/assets/js/off-canvas.js') !!}
+  {!! app('html')->script('/public/assets/js/hoverable-collapse.js') !!}
+  {!! app('html')->script('/public/assets/js/template.js') !!}
+  {!! app('html')->script('/public/assets/js/todolist.js') !!}
+  {!! app('html')->script('/public/assets/js/dashboard.js') !!}
 
 
 </body>

@@ -21,6 +21,13 @@
         "symfony/thanks": "^1.0"
     },
     "autoload": {
+        "files": [
+            "app/Clases/CodigoControlV7.php",
+            "app/Clases/AllegedRC4.php",
+            "app/Clases/Verhoeff.php",
+            "app/Clases/Letras.php",
+            "app/Clases/Lin.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"

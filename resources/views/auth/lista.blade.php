@@ -1,4 +1,4 @@
-@extends('master')
+@extends('bett0')
 
 @section('title') Usuarios @endsection
 

@@ -1,62 +1,119 @@
-@extends('master')
+@extends('bett0')
 
-@section('title') Usuarios @endsection
+
+@section('title') Usuario @endsection
+@section('Usuario') active @endsection
+@section('descripcion') Editar datos del usuario @endsection
 
 @section('titulo')
-  <h4> <i class="ti-user menu-icon"></i> Usuarios  - Editar</h4>
- @endsection
-
-@section('usuario')
- active
+  <h4> <i class="ti-user menu-icon"></i> Usuarios </h4>
 @endsection
 
 @section('boton')
-  <a   href="{{url('usuarios')}}"  class="nuevo btn btn-primary btn-icon-text btn-rounded"  accesskey="n"> <i class="ti-plus btn-icon-prepend"></i> I<u>n</u>inicio </a>
+<a href="{{asset('index.php/Usuario')}}" class="btn btn-success  btn-icon-text btn-rounded" accesskey="v"> <i class="ti-arrow-left menu-icon"></i> <u>V</u>olver </a>
+<a   href="{{asset('/index.php/Registro')}}"  class="nuevo btn btn-primary btn-icon-text btn-rounded" data-target="" accesskey="n"> <i class="ti-plus btn-icon-prepend"></i> <u>N</u>uevo </a>
 @endsection
 
+
 @section('cuerpo')
+{!! Form::model($user, ['action'=>['UsuarioController@editarPost', $user->id], 'method'=>'PATCH', 'id'=>'form-create', 'class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'off'  ])!!}
+{!! Form::hidden('id', null, ['id'=>'id', 'class'=>'form-control']) !!}
+<h4>Datos de usuario</h4>
+<hr>
 
-                {!! Form::model($user, ['action'=>['UsuarioController@update', $user->id], 'method'=>'PATCH', 'id'=>'form-create', 'class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'off'  ])!!}
-                  <h4>Datos de usuario</h4>
-                  <hr>
+<div class="row">
+  <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="nombre" class="col-md-4 control-label">Nombres Y Apellidos</label>
+    <div class="">
+      <input id="" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required>
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="name" class="col-md-4 control-label"> Usuario </label>
+    <div class="">
+      <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+      @if ($errors->has('name'))
+      <span class="help-block">
+        <strong>{{ $errors->first('name') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+</div>
 
-                    {!! Form::hidden('id', null, ['id'=>'id', 'class'=>'form-control']) !!}
+<div class="row">
+  <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="direccion" class="col-md-4 control-label">Direccion</label>
+    <div class="">
+      <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" >
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="telefono" class="col-md-4 control-label"> Telefono/Celular </label>
+    <div class="">
+      <input id="telefono" type="text" class="form-control" name="telefono" value="{{ old('telefono') }}" >
+      @if ($errors->has('telefono'))
+      <span class="help-block">
+        <strong>{{ $errors->first('telefono') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+</div>
 
-                  <div class="row">
-                    <div class="form-group col-md-12 col-xl-6">
-                      <label for="salud" class="col-md-4 control-label">Centro de Salud</label>
-                        {!! Form::select('salud', \App\Centro::pluck('centro', 'centro'), null, ['id'=>'salud', 'class'=>'form-control']) !!}
-                    </div>
+<div class="row">
+  <div class="form-group{{ $errors->has('grupo') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="grupo" class="col-md-4 control-label">Grupo de usuario</label>
+    <div class="">
+      {!! Form::select('grupo', ['1'=>'Administrador', '2'=>'Usuario', '3'=>'Mesero', '4'=>'Reporte'], null, ['id'=>'grupo', 'placeholder'=>'', 'class'=>'form-control', 'required']) !!}
+    </div>
+  </div>
 
+  <div class="form-group{{ $errors->has('id_sucursal') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="id_sucursal" class="col-md-4 control-label"> Sucursal </label>
+    <div class="">
+      {!! Form::select('id_sucursal', \App\Sucursal::pluck('sucursal', 'id'), null, ['id'=>'id_sucursal', 'placeholder'=>'', 'class'=>'form-control', 'required']) !!}
+    </div>
+  </div>
 
-                    <div class="form-group col-md-12 col-xl-3">
-                      <a href="" class="btn btn-primary btn-rounded btn-icon" id="agregar"> <i class="ti-plus menu-icon"></i>  </a>
-                    </div>
-                    <div class="form-group col-md-12 col-xl-3" id="centrosSalud">
-                      @foreach($centros as $centro)
-                      <p class="badge badge-danger" id="encargado{{$centro->id}}">  {{$centro->centro_salud}}   <b onclick="cerrar('{{$centro->id}}')" style="color:white;"><i class="ti-close menu-icon"></i> </b> </p>
-                      @endforeach
+</div>
 
-                    </div>
-                  </div>
+<div class="row">
+  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12 col-xl-6">
+    <label for="password" class="col-md-4 control-label">Contraseña</label>
+    <input id="password" type="password" class="form-control" name="password" required>
+    @if ($errors->has('password'))
+    <span class="help-block">
+      <strong>{{ $errors->first('password') }}</strong>
+    </span>
+    @endif
+  </div>
+  <div class="form-group col-md-12 col-xl-6">
+    <label for="password-confirm" class="col-md-4 control-label">Confirar Contraseña</label>
+    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+  </div>
+</div>
 
+<!-----------------------------------------------------------------------><!----------------------------------------------------------------------->
+<!-----------------------------------------------------------------------><!----------------------------------------------------------------------->
+<!-----------------------------------------------------------------------><!----------------------------------------------------------------------->
 
-                  <div class="row">
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-12 col-xl-6">
-                        <label for="name" class="col-md-4 control-label">Usuario</label>
-                        {!! Form::text('name',  old('name'), ['id'=>'name', 'class'=>'form-control', 'placeholder'=>'nombreapellido']) !!}
-                        @if ($errors->has('name'))
-                          <span class="help-block">{{ $errors->first('name') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-12 col-xl-6">
-                        <label for="email" class="col-md-4 control-label">Nombre Completo</label>
-                        {!! Form::text('email',  old('email'), ['id'=>'email', 'class'=>'form-control', 'placeholder'=>'correo@correo.com']) !!}
-                        @if ($errors->has('email'))
-                          <span class="help-block">{{ $errors->first('email') }}</span>
-                        @endif
-                    </div>
-                  </div>
+  <div class="row">
+    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-12 col-xl-6">
+      <label for="name" class="col-md-4 control-label">Usuario</label>
+      {!! Form::text('name',  old('name'), ['id'=>'name', 'class'=>'form-control', 'placeholder'=>'nombreapellido']) !!}
+      @if ($errors->has('name'))
+        <span class="help-block">{{ $errors->first('name') }}</span>
+      @endif
+    </div>
+    <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }} col-md-12 col-xl-6">
+      <label for="nombre" class="col-md-4 control-label">Nombres y Apellidos</label>
+      {!! Form::text('nombre',  old('nombre'), ['id'=>'nombre', 'class'=>'form-control', 'placeholder'=>'Nombres y Apellidos']) !!}
+      @if ($errors->has('nombre'))
+        <span class="help-block">{{ $errors->first('nombre') }}</span>
+      @endif
+    </div>
+  </div>
 
                   <div class="row">
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-12 col-xl-6">

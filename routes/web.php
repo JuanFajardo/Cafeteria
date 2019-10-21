@@ -19,6 +19,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/Registro', 'UsuarioController@registro')->name('registro');
+Route::post('/Registro', 'UsuarioController@registroPost')->name('registroPost');
+
+Route::get('/Editar/{id}', 'UsuarioController@editar')->name('editar');
+Route::post('/Editar', 'UsuarioController@editarPost')->name('editarPost');
+
+
 Route::get('/Usuario', 'HomeController@index')->name('usuario.lista');
 Route::get('/clave', 'HomeController@claveGet')->name('usuario.clave');
 Route::post('/clave', 'HomeController@clavePost')->name('usuario.cambiar');

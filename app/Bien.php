@@ -8,6 +8,6 @@ class Bien extends Model
 {
   use SoftDeletes;
   protected $table    = 'biens';
-  protected $fillable = [ 'id', 'bien', 'id_unidad', 'id_usuario' ];
+  protected $fillable = [ 'id', 'bien', 'unidad', 'cantidad', 'precio', 'total', 'id_usuario'];
   protected $dates    = ['deleted_at'];
 }

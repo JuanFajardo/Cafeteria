@@ -11,7 +11,10 @@ class CreateBiensTable extends Migration
         Schema::create('biens', function (Blueprint $table) {
           $table->increments('id');
           $table->string('bien');
-          $table->integer('id_unidad');
+          $table->string('unidad');
+          $table->float('cantidad');
+          $table->float('precio');
+          $table->float('total');
           $table->integer('id_usuario');
           $table->softDeletes();
           $table->timestamps();
